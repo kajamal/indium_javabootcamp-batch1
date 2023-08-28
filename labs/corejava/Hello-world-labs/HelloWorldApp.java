@@ -8,5 +8,11 @@ public class HelloWorldApp {
 		* demo
       */
 		System.out.println("Hello World!!!");
-	}
+                  try {
+            // sleep for 5 mins
+            Thread.sleep(1000*60*5);
+        }catch(InterruptedException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
