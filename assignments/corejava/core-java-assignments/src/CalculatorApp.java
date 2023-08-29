@@ -22,6 +22,9 @@ public class CalculatorApp {
             case '/':
                 System.out.println("The final result: " + (firstnumber / secondnumber));
                 break;
+            default:
+                System.out.println("invalid operator");
+   
 
         }
     }
