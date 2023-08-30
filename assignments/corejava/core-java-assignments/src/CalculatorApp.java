@@ -24,6 +24,10 @@ public class CalculatorApp {
                 break;
             default:
                 System.out.println("invalid operator");
+<<<<<<< HEAD
+=======
+   
+>>>>>>> f07514997d17fd4fbe28e70951fb7b039b3cdc2e
 
         }
     }
