@@ -1,5 +1,5 @@
 public class CommandLineCalculator {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
         int firstnumber = Integer.valueOf(args[0]);
         char operator = args[1].charAt(0);

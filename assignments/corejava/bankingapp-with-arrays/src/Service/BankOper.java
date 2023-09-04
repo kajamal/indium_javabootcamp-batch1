@@ -1,12 +1,17 @@
-package Model;
+package Service;
+
+import Model.Account;
 
 public interface BankOper {
-        void createaccount(Account account);
-        void getAllAccounts();
-        void viewAccount(int accountNumber);
-        void updateAccount(int id, double newBalance);
-        void deleteAccount(int accountNumber);
-    }
+    void createAccount(int id, String name, double balance, String type);
 
+    Account[] getAllAccounts();
+
+    Account getAccountById(int id);
+
+    void updateBalance(int id, double newBalance);
+
+    void deleteAccount(int id);
+}
 
 
