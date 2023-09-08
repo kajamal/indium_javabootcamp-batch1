@@ -1,11 +1,20 @@
-import Service.AccountService;
-import Model.Account;
+package com.indium.bankingapp.Model;//import Service.AccountService;
+import com.indium.bankingapp.Model.Account;
+import Service.*;
+import com.indium.bankingapp.Model.Service.AccountServiceTreeMapImplementation;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        AccountService accountService = new AccountService();
+
+        //AccountService = new AccountService();
+       // AccountServiceArrayListImplementation accountService = new AccountServiceArrayListImplementation();
+       // AccountServiceLinkListImplementation accountService = new AccountServiceLinkListImplementation();
+        // HashMapImplementation accountService = new HashMapImplementation();
+        //HashSetImplementation accountService = new HashSetImplementation();
+        AccountServiceTreeMapImplementation accountService = new AccountServiceTreeMapImplementation();
+
         Scanner scanner = new Scanner(System.in);
 
         int choice;
@@ -32,6 +41,7 @@ public class Main {
                     System.out.print("Enter Account Type: ");
                     String type = scanner.next();
                     accountService.createAccount(id, name, balance, type);
+
                     break;
                 case 2:
 

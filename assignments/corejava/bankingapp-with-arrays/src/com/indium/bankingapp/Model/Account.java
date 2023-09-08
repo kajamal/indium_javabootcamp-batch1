@@ -1,4 +1,4 @@
-package Model;
+package com.indium.bankingapp.Model;
 
 public class Account {
     private int id;

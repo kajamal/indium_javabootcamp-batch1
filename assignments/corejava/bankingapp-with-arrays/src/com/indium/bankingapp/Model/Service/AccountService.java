@@ -1,7 +1,6 @@
-package Service;
+package com.indium.bankingapp.Model.Service;
 
-import Model.Account;
-import Service.BankOper;
+import com.indium.bankingapp.Model.Account;
 
 public class AccountService implements BankOper {
     private Account[] accounts;
