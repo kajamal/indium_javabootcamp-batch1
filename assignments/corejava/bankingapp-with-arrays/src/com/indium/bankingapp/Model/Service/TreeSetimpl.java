@@ -7,12 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TreeSetimpl implements BankOper {
-    private Set<Account> accountSet = new TreeSet<>(new Comparator<Account>() {
-        @Override
-        public int compare(Account account1, Account account2) {
-            return Integer.compare(account1.getId(), account2.getId());
-        }
-    });
+    private Set<Account> accountSet = new TreeSet<>();
 
     @Override
     public void createAccount(int id, String name, double balance, String type) {
@@ -33,7 +28,7 @@ public class TreeSetimpl implements BankOper {
                 return account;
             }
         }
-        return null; // Account not found
+        return null;
     }
 
     @Override
@@ -52,7 +47,7 @@ public class TreeSetimpl implements BankOper {
         for (Account account : accountSet) {
             if (account.getId() == id) {
                 accountToRemove = account;
-                break; 
+                break;
             }
         }
 
