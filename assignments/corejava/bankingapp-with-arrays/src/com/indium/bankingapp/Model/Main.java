@@ -1,7 +1,9 @@
-package com.indium.bankingapp.Model;//import Service.AccountService;
+package com.indium.bankingapp.Model;
+//import Service.AccountService;
 import com.indium.bankingapp.Model.Account;
-import Service.*;
+
 import com.indium.bankingapp.Model.Service.AccountServiceTreeMapImplementation;
+import com.indium.bankingapp.Model.Service.TreeSetimpl;
 
 import java.util.Scanner;
 
@@ -13,8 +15,8 @@ public class Main {
        // AccountServiceLinkListImplementation accountService = new AccountServiceLinkListImplementation();
         // HashMapImplementation accountService = new HashMapImplementation();
         //HashSetImplementation accountService = new HashSetImplementation();
-        AccountServiceTreeMapImplementation accountService = new AccountServiceTreeMapImplementation();
-
+        //AccountServiceTreeMapImplementation accountService = new AccountServiceTreeMapImplementation();
+        TreeSetimpl accountService = new TreeSetimpl();
         Scanner scanner = new Scanner(System.in);
 
         int choice;
