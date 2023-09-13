@@ -3,14 +3,9 @@ package com.indium.bankingapp.Service;
 import com.indium.bankingapp.Model.Account;
 
 public class AccountServiceArrImpl implements BankOper {
-    private Account[] accounts;
-    private int numberOfAccounts;
     private static final int MAX_ACCOUNTS = 100;
-
-    public AccountServiceArrImpl() {
-        accounts = new Account[MAX_ACCOUNTS];
-        numberOfAccounts = 0;
-    }
+    private Account[] accounts = new Account[MAX_ACCOUNTS];
+    private int numberOfAccounts = 0;
 
     @Override
     public void createAccount(Account account) {
@@ -41,15 +36,13 @@ public class AccountServiceArrImpl implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        for (int i = 0; i < numberOfAccounts; i++) {
-            if (accounts[i].getId() == id) {
-                accounts[i].setBalance(newBalance);
-                System.out.println("Account balance updated successfully.");
-                return;
-            }
+    public void updateBalance(Account account, int newBalance) {
+        if (account != null) {
+            account.setBalance(newBalance);
+            System.out.println("Account balance updated successfully.");
+        } else {
+            System.out.println("Account not found");
         }
-        System.out.println("Account not found.");
     }
 
     @Override
@@ -62,7 +55,7 @@ public class AccountServiceArrImpl implements BankOper {
                 accounts[numberOfAccounts - 1] = null;
                 numberOfAccounts--;
                 System.out.println("Account deleted successfully.");
-                return;
+                return; // Exit the loop once account is deleted
             }
         }
         System.out.println("Account not found.");

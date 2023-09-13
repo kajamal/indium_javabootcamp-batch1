@@ -11,8 +11,7 @@ public class AccountServiceArrayListImplementation implements BankOper {
     private ArrayList<Account> accounts = new ArrayList<>();
 
     @Override
-    public void createAccount(int id, String name, double balance, String type) {
-        Account account = new Account(id, name, balance, type);
+    public void createAccount(Account account) {
         accounts.add(account);
         System.out.println("Account created successfully.");
     }
@@ -33,16 +32,14 @@ public class AccountServiceArrayListImplementation implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        for (Account account : accounts) {
-            if (account.getId() == id) {
+    public void updateBalance(Account account, int newBalance) {
+            if (account != null) {
                 account.setBalance(newBalance);
                 System.out.println("Account balance updated successfully.");
-                return;
-            }
-        }
+            }else
         System.out.println("Account not found.");
-    }
+        }
+
 
     @Override
     public void deleteAccount(int id) {

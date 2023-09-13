@@ -9,9 +9,8 @@ public class AccountServiceTreeMapImplementation implements BankOper {
     private Map<Integer, Account> accountMap = new TreeMap<>();
 
     @Override
-    public void createAccount(int id, String name, double balance, String type) {
-        Account newAccount = new Account(id, name, balance, type);
-        accountMap.put(id, newAccount);
+    public void createAccount(Account account) {
+        accountMap.put(account.getId(),account);
         System.out.println("Account Created Successfully");
     }
 
@@ -26,16 +25,22 @@ public class AccountServiceTreeMapImplementation implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        Account account = accountMap.get(id);
+    public void updateBalance(Account account, int newBalance) {
         if (account != null) {
             account.setBalance(newBalance);
+            System.out.println("Account balance updated successfully");
+        } else {
+            System.out.println("Account not found");
         }
     }
 
     @Override
     public void deleteAccount(int id) {
-        accountMap.remove(id);
-        System.out.println("Account deleted successfully");
+        Account removedAccount = accountMap.remove(id);
+        if (removedAccount != null) {
+            System.out.println("Account deleted successfully");
+        } else {
+            System.out.println("Account not found");
+        }
     }
 }

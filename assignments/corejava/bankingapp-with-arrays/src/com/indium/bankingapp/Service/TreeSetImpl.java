@@ -5,13 +5,12 @@ import com.indium.bankingapp.Model.Account;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TreeSetimpl implements BankOper {
+public class TreeSetImpl implements BankOper {
     private Set<Account> accountSet = new TreeSet<>();
 
     @Override
-    public void createAccount(int id, String name, double balance, String type) {
-        Account newAccount = new Account(id, name, balance, type);
-        accountSet.add(newAccount);
+    public void createAccount(Account account) {
+        accountSet.add(account);
         System.out.println("Account Created Successfully");
     }
 
@@ -31,12 +30,13 @@ public class TreeSetimpl implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        for (Account account : accountSet) {
-            if (account.getId() == id) {
-                account.setBalance(newBalance);
-                return; // Exit the loop after updating
-            }
+    public void updateBalance(Account account, int newBalance) {
+        if (account != null) {
+            account.setBalance(newBalance);
+            System.out.println("Account balance updated");
+        }
+        else {
+            System.out.println("Account not found");
         }
     }
 

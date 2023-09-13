@@ -9,11 +9,8 @@ public class HashSetImplementation implements BankOper {
     private Set<Account> accounts = new HashSet<>();
 
     @Override
-    public void createAccount(int id, String name, double balance, String type) {
-
-        Account newAccount = new Account(id, name, balance, type);
-
-        accounts.add(newAccount);
+    public void createAccount(Account account) {
+        accounts.add(account);
     }
 
     @Override
@@ -32,14 +29,15 @@ public class HashSetImplementation implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        for (Account account : accounts) {
-            if (account.getId() == id) {
+    public void updateBalance(Account account, int newBalance) {
+            if (account != null) {
                 account.setBalance(newBalance);
-                break;
+                System.out.println("Account balance updated successfully");
+            } else {
+                System.out.println("Account not found");
             }
+
         }
-    }
 
     @Override
     public void deleteAccount(int id) {

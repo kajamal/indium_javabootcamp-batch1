@@ -3,10 +3,10 @@ package com.indium.bankingapp.Model;
 public class Account {
     private int id;
     private String name;
-    private double balance;
+    private int balance;
     private String type;
 
-    public Account(int id, String name, double balance, String type) {
+    public Account(int id, String name, int balance, String type) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -33,7 +33,7 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 

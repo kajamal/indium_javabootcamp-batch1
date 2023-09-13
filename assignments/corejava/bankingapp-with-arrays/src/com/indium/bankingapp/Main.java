@@ -1,21 +1,23 @@
 package com.indium.bankingapp;
 //import Service.AccountService;
 import com.indium.bankingapp.Model.Account;
+import com.indium.bankingapp.Service.*;
+//import com.indium.bankingapp.Service.AccountServiceLinkListImplementation;
 
-import com.indium.bankingapp.Service.HashSetImplementation;
+//import com.indium.bankingapp.Service.AccountServiceArrImpl;
+//import com.indium.bankingapp.Service.HashSetImplementation;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        //AccountService = new AccountService();
-       // AccountServiceArrayListImplementation accountService = new AccountServiceArrayListImplementation();
-       // AccountServiceLinkListImplementation accountService = new AccountServiceLinkListImplementation();
-        // HashMapImplementation accountService = new HashMapImplementation();
-        //TreeSetimpl accountService = new TreeSetimpl();
+          //AccountServiceArrImpl accountService = new AccountServiceArrImpl();
+        //AccountServiceArrayListImplementation accountService = new AccountServiceArrayListImplementation();
+         //AccountServiceLinkListImplementation accountService = new AccountServiceLinkListImplementation();
+       // HashMapImplementation accountService = new HashMapImplementation();
+        //TreeSetImpl accountService = new TreeSetImpl();
         //AccountServiceTreeMapImplementation accountService = new AccountServiceTreeMapImplementation();
-        HashSetImplementation accountService = new HashSetImplementation();
+       HashSetImplementation accountService = new HashSetImplementation();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -39,10 +41,11 @@ public class Main {
                     System.out.print("Enter Account Name: ");
                     String name = scanner.next();
                     System.out.print("Enter Account Balance: ");
-                    double balance = scanner.nextDouble();
+                    int balance = scanner.nextInt();
                     System.out.print("Enter Account Type: ");
                     String type = scanner.next();
-                    accountService.createAccount(id, name, balance, type);
+                    Account newAccount = new Account(id, name, balance, type);
+                    accountService.createAccount(newAccount);
 
                     break;
                 case 2:
@@ -51,6 +54,7 @@ public class Main {
                     for (Account account : allAccounts) {
                         System.out.println(account);
                         System.out.println();
+
                     }
                     break;
                 case 3:
@@ -68,9 +72,14 @@ public class Main {
 
                     System.out.print("Enter Account ID to update balance: ");
                     int updateId = scanner.nextInt();
-                    System.out.print("Enter New Balance: ");
-                    double newBalance = scanner.nextDouble();
-                    accountService.updateBalance(updateId, newBalance);
+                    Account updateAccount = accountService.getAccountById(updateId);
+                    if (updateAccount != null) {
+                        System.out.print("Enter the new amount : ");
+                        int newBalance = scanner.nextInt();
+                        accountService.updateBalance(updateAccount, newBalance);
+                    } else {
+                        System.out.println("Update failed.");
+                    }
                     break;
                 case 5:
 

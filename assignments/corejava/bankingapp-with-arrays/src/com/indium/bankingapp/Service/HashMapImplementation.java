@@ -8,9 +8,8 @@ public class HashMapImplementation implements BankOper {
     private int accountIdCounter = 1;
 
     @Override
-    public void createAccount(int id,String name, double balance, String type) {
-        Account newAccount = new Account(accountIdCounter, name, balance, type);
-        accountMap.put(accountIdCounter, newAccount);
+    public void createAccount(Account account) {
+        accountMap.put(accountIdCounter, account);
         System.out.println("Account created successfully.");
         accountIdCounter++;
     }
@@ -29,10 +28,13 @@ public class HashMapImplementation implements BankOper {
     }
 
     @Override
-    public void updateBalance(int id, double newBalance) {
-        Account account = accountMap.get(id);
+    public void updateBalance(Account account, int newBalance) {
         if (account != null) {
             account.setBalance(newBalance);
+            System.out.println("Account balance updated");
+        }
+        else {
+            System.out.println("Account not found");
         }
     }
 

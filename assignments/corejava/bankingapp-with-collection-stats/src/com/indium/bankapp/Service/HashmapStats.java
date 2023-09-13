@@ -11,7 +11,7 @@ public class HashmapStats implements BankOperation {
 
     @Override
     public void createAccount(Account account) {
-        int id = accountIdCounter++; 
+        int id = accountIdCounter++;
         account.setId(id);
         accountMap.put(id, account);
         System.out.println("Account created successfully.");
