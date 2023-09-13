@@ -10,12 +10,14 @@ public class HashmapStats implements BankOperation {
     private int accountIdCounter = 1;
 
     @Override
-    public void createAccount(int id, String name, int balance, String type) {
-        Account newAccount = new Account(accountIdCounter, name, balance, type);
-        accountMap.put(accountIdCounter, newAccount);
+    public void createAccount(Account account) {
+        int id = accountIdCounter++; 
+        account.setId(id);
+        accountMap.put(id, account);
         System.out.println("Account created successfully.");
-        accountIdCounter++;
     }
+
+
 
     @Override
     public Account[] getAllAccounts() {
@@ -28,12 +30,15 @@ public class HashmapStats implements BankOperation {
     }
 
     @Override
-    public void updateBalance(int id, int newBalance) {
-        Account account = accountMap.get(id);
-        if (account != null) {
-            account.setBalance(newBalance);
+        public void updateBalance(Account account, int newBalance) {
+            if (account != null) {
+                account.setBalance(newBalance);
+                System.out.println("Account balance updated successfully.");
+            } else {
+                System.out.println("Account balance not updated");
+            }
         }
-    }
+
 
     @Override
     public void deleteAccount(int id) {

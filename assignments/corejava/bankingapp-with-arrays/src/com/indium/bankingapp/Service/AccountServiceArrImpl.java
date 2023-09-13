@@ -13,9 +13,9 @@ public class AccountServiceArrImpl implements BankOper {
     }
 
     @Override
-    public void createAccount(int id, String name, double balance, String type) {
+    public void createAccount(Account account) {
         if (numberOfAccounts < MAX_ACCOUNTS) {
-            accounts[numberOfAccounts] = new Account(id, name, balance, type);
+            accounts[numberOfAccounts] = account;
             numberOfAccounts++;
             System.out.println("Account created successfully.");
         } else {

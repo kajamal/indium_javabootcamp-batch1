@@ -7,10 +7,10 @@ import java.util.Map;
 
 public interface BankOperation {
 
-    void createAccount(int id, String name, int balance, String type);
+    void createAccount(Account account);
     Account[] getAllAccounts();
     Account getAccountById(int id);
-    void updateBalance(int id, int newBalance);
+    void updateBalance(Account account, int newBalance);
     void deleteAccount(int id);
     int countAccountsAboveOneLac();
     Map<String, Integer> countAccountsByType();

@@ -1,7 +1,6 @@
 import com.indium.bankapp.Model.Account;
 import com.indium.bankapp.Service.HashmapStats;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +33,8 @@ public class Main {
                     int balance = scanner.nextInt();
                     System.out.print("Enter Account Type: ");
                     String type = scanner.next();
-                    accountService.createAccount(id, name, balance, type);
+                    Account newAccount = new Account(id, name, balance, type);
+                    accountService.createAccount(newAccount);
 
                     break;
                 case 2:
@@ -42,7 +42,7 @@ public class Main {
                     Account[] allAccounts = accountService.getAllAccounts();
                     for (Account account : allAccounts) {
                         System.out.println(account);
-                        System.out.println();
+
                     }
                     break;
                 case 3:
@@ -58,11 +58,16 @@ public class Main {
                     break;
                 case 4:
 
-                    System.out.print("Enter Account Id to update balance: ");
+                    System.out.print("Enter Account ID to update balance: ");
                     int updateId = scanner.nextInt();
-                    System.out.print("Enter New Balance: ");
-                    int newBalance = scanner.nextInt();
-                    accountService.updateBalance(updateId, newBalance);
+                    Account updateAccount = accountService.getAccountById(updateId);
+                    if (updateAccount != null) {
+                        System.out.print("Enter the new amount : ");
+                        int newBalance = scanner.nextInt();
+                        accountService.updateBalance(updateAccount, newBalance);
+                    } else {
+                        System.out.println("Update failed.");
+                    }
                     break;
                 case 5:
 
