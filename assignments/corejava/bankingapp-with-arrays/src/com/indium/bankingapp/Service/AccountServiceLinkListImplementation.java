@@ -1,14 +1,14 @@
-package com.indium.bankingapp.Model.Service;
+package com.indium.bankingapp.Service;
 
 import com.indium.bankingapp.Model.Account;
 
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Iterator;
 
-public class AccountServiceArrayListImplementation implements BankOper {
+public class AccountServiceLinkListImplementation implements BankOper {
 
-    private ArrayList<Account> accounts = new ArrayList<>();
+    private LinkedList<Account> accounts = new LinkedList<>();
 
     @Override
     public void createAccount(int id, String name, double balance, String type) {

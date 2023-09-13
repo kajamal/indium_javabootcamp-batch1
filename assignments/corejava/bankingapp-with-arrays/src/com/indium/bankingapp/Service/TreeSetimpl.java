@@ -1,8 +1,7 @@
-package com.indium.bankingapp.Model.Service;
+package com.indium.bankingapp.Service;
 
 import com.indium.bankingapp.Model.Account;
 
-import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 

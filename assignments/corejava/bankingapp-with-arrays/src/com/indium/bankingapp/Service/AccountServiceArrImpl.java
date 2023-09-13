@@ -1,13 +1,13 @@
-package com.indium.bankingapp.Model.Service;
+package com.indium.bankingapp.Service;
 
 import com.indium.bankingapp.Model.Account;
 
-public class AccountService implements BankOper {
+public class AccountServiceArrImpl implements BankOper {
     private Account[] accounts;
     private int numberOfAccounts;
     private static final int MAX_ACCOUNTS = 100;
 
-    public AccountService() {
+    public AccountServiceArrImpl() {
         accounts = new Account[MAX_ACCOUNTS];
         numberOfAccounts = 0;
     }
