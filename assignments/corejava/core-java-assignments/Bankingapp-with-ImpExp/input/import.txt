@@ -1,0 +1,2 @@
+1,kaja,150000,savings
+2,sharif,100000,deposit

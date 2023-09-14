@@ -1,11 +1,13 @@
-package com.indium.bankapp.Service;
+package com.indium.bankingapp.Service;
 
-import com.indium.bankapp.Model.Account;
 
+import com.indium.bankingapp.Model.Account;
+
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class HashmapStats implements BankOperation {
+public class AccountServiceHashMapImplement implements AccountService {
     private HashMap<Integer, Account> accountMap = new HashMap<>();
     private int accountIdCounter = 1;
 
@@ -16,6 +18,7 @@ public class HashmapStats implements BankOperation {
         accountMap.put(id, account);
         System.out.println("Account created successfully.");
     }
+
 
 
     @Override
@@ -86,7 +89,6 @@ public class HashmapStats implements BankOperation {
                         entry -> entry.getValue().intValue()
                 ));
     }
-
     @Override
     public Map<Integer, String> getAccountIdsByName(String partialName) {
         Map<Integer,String> accountIds = new HashMap<>();
@@ -101,6 +103,55 @@ public class HashmapStats implements BankOperation {
         return accountIds;
 
     }
+    @Override
+    public void importProducts() {
+        int count = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("./input/import.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0].trim());
+                String name = parts[1].trim();
+                int balance = Integer.parseInt(parts[2].trim());
+                String type = parts[3].trim();
+                Account account = new Account(id,name,balance,type);
+                accountMap.put(balance, account);
+                count++;
+
+            }
+            System.out.println("Data Imported");
+
+        } catch (IOException e) {
+           System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void exportProducts() {
+            int count = 0;
+            try(PrintWriter out = new PrintWriter(new FileWriter("./output/export.txt"))){
+                for(Account account : accountMap.values()){
+                    StringBuilder accountrecord = new StringBuilder();
+                    accountrecord.append(account.getId())
+                            .append(",")
+                            .append(account.getName())
+                            .append(",")
+                            .append(account.getBalance())
+                            .append(",")
+                            .append(account.getType())
+                            .append("\n");
+                    out.write(accountrecord.toString());
+                    count++;
+                }
+                System.out.println("Data exported "+count);
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+
 
 }
 

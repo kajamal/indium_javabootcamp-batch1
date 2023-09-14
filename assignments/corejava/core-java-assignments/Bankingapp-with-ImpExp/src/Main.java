@@ -1,14 +1,13 @@
-package com.indium.bankapp;
+import com.indium.bankingapp.Model.Account;
+import com.indium.bankingapp.Service.AccountServiceHashMapImplement;
 
-import com.indium.bankapp.Model.Account;
-import com.indium.bankapp.Service.HashmapStats;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        HashmapStats accountService = new HashmapStats();
+        AccountServiceHashMapImplement accountService = new AccountServiceHashMapImplement();
         Scanner scanner = new Scanner(System.in);
 
         int choice;
@@ -20,7 +19,9 @@ public class Main {
             System.out.println("4. Update Account Balance");
             System.out.println("5. Delete Account");
             System.out.println("6. Print Statistics");
-            System.out.println("7. Exit");
+            System.out.println("7. Import Data");
+            System.out.println("8. Export Data");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
 
@@ -82,17 +83,23 @@ public class Main {
                     printStatistics(accountService);
                     break;
                 case 7:
+                     accountService.importProducts();
+                     break;
+                case 8:
+                    accountService.exportProducts();
+                    break;
+                case 9:
                     System.out.println("Exiting the application.");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 7);
+        } while (choice != 9);
 
 
     }
 
-    private static void printStatistics(HashmapStats accountService) {
+    private static void printStatistics(AccountServiceHashMapImplement accountService) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Statistics:");
         int accountsAboveOneLac = accountService.countAccountsAboveOneLac();
@@ -118,4 +125,5 @@ public class Main {
             System.out.println("Account ID: " + accountId + ", Account Name: " + accountName);
         });
 
-}}
+    }
+}
