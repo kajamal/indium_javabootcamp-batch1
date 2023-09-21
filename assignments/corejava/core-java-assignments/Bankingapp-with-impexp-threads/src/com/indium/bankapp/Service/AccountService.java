@@ -16,7 +16,7 @@ public interface AccountService {
     int countAccountsAboveOneLac();
     Map<String, Integer> countAccountsByType();
     Map<String, Integer>countAndSortAccountsByType();
-    Map<String, Integer> calculateAvgBalanceByType();
+    Map<String, Double> calculateAvgBalanceByType();
     Map<Integer, String> getAccountIdsByName(String partialName);
 
 
