@@ -1,3 +1,2 @@
 2,sharif,100000,deposit
-1,john,10000,sa
 1,kaja,150000,savings

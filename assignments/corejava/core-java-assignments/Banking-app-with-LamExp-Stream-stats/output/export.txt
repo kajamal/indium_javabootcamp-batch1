@@ -1,0 +1,2 @@
+4,kajasharif,10000,savings
+1,kaja,1000,sa
