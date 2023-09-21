@@ -74,19 +74,12 @@ import java.util.stream.Collectors;
             Map<String, Integer> sortedAccountTypeCounts = new TreeMap<>(accountTypeCounts);
             return sortedAccountTypeCounts;
         }
-
-        public Map<String, Integer> calculateAvgBalanceByType() {
+       public Map<String, Double> calculateAvgBalanceByType() {
             return accountMap.values()
                     .stream()
                     .collect(Collectors.groupingBy(
                             Account::getType,
                             Collectors.averagingInt(Account::getBalance)
-                    ))
-                    .entrySet()
-                    .stream()
-                    .collect(Collectors.toMap(
-                            Map.Entry::getKey,
-                            entry -> entry.getValue().intValue()
                     ));
         }
 
