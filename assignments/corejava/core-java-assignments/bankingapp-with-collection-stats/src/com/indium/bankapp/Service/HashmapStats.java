@@ -72,20 +72,14 @@ public class HashmapStats implements BankOperation {
         return sortedAccountTypeCounts;
     }
 
-    public Map<String, Integer> calculateAvgBalanceByType() {
-        return accountMap.values()
-                .stream()
-                .collect(Collectors.groupingBy(
-                        Account::getType,
-                        Collectors.averagingInt(Account::getBalance)
-                ))
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> entry.getValue().intValue()
-                ));
-    }
+   public Map<String, Double> calculateAvgBalanceByType() {
+            return accountMap.values()
+                    .stream()
+                    .collect(Collectors.groupingBy(
+                            Account::getType,
+                            Collectors.averagingInt(Account::getBalance)
+                    ));
+        }
 
     @Override
     public Map<Integer, String> getAccountIdsByName(String partialName) {
