@@ -1,0 +1,4 @@
+1,kaja,100000,sa
+2,sharif,12,deposit
+4,malik,123786,deposit
+5,john,12098334,savings
