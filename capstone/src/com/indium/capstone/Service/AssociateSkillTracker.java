@@ -3,6 +3,8 @@ package com.indium.capstone.Service;
 
 import com.indium.capstone.Dao.Associateinterface;
 import com.indium.capstone.Dao.AssosiateServiceDao;
+import com.indium.capstone.Dao.SkillDao;
+import com.indium.capstone.Dao.SkillDaoImpl;
 import com.indium.capstone.Model.Associate;
 import com.indium.capstone.Model.Skill;
 
@@ -15,9 +17,11 @@ public class AssociateSkillTracker implements AssociateSkillsService {
     private List<Associate> associates = new ArrayList<>();
     private List<Skill> skills = new ArrayList<>();
     Associateinterface associateinterface;
+    SkillDao skillDao;
 
     public AssociateSkillTracker(){
            associateinterface = new AssosiateServiceDao();
+           skillDao = new SkillDaoImpl();
 
     }
 
@@ -44,45 +48,23 @@ public class AssociateSkillTracker implements AssociateSkillsService {
     }
 
     public void addSkillToAssociate(int associateId, Skill skill) {
-        for (Associate associate : associates) {
-            if (associate.getId() == associateId) {
-                associate.addSkill(skill);
-                break;
-            }
+            boolean addSkillStatus = skillDao.create(skill);
         }
-    }
+
+
 
     public void editSkill(int skillId, Skill updatedSkill) {
-        for (Skill skill : skills) {
-            if (skill.getId() == skillId) {
-                skill.setName(updatedSkill.getName());
-                skill.setDescription(updatedSkill.getDescription());
-                skill.setCategory(updatedSkill.getCategory());
-                skill.setExperience(updatedSkill.getExperience());
-                break;
-            }
-        }
-        for (Associate associate : associates) {
-            associate.editSkill(skillId, updatedSkill);
-        }
+        boolean editSkillStatus = skillDao.update(updatedSkill);
     }
 
     public void deleteSkill(int skillId) {
-        skills.removeIf(skill -> skill.getId() == skillId);
-        for (Associate associate : associates) {
-            associate.deleteSkill(skillId);
-        }
+        boolean deleteSkillStatus = skillDao.delete(skillId);
+
     }
 
-    public void viewAssociate(int associateId){
-        for (Associate associate : associates) {
-            if (associate.getId() == associateId) {
-                associate.viewDetails();
-            }
-        }
-    }
 
     public void searchAssociateByName(String name){
+        associates = associateinterface.getall();
         List<Associate> associatesByName = associates.stream()
                 .filter(associate -> associate.getName().equalsIgnoreCase(name))
                 .collect(Collectors.toList());
@@ -92,6 +74,8 @@ public class AssociateSkillTracker implements AssociateSkillsService {
     }
 
     public void searchAssociateByLocation(String location){
+        associates = associateinterface.getall();
+        associates = associateinterface.getall();
         List<Associate> associatesByLocation = associates.stream()
                 .filter(associate -> associate.getLocation().equalsIgnoreCase(location))
                 .collect(Collectors.toList());

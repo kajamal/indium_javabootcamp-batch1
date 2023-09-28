@@ -1,7 +1,6 @@
 package com.indium.capstone.Model;
 
 public class Skill {
-    private static int nextId = 1;
     private int id;
     private String name;
     private String description;
@@ -24,13 +23,6 @@ public class Skill {
         System.out.println("Experience (months): " + experience);
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        Skill.nextId = nextId;
-    }
 
     public int getId() {
         return id;

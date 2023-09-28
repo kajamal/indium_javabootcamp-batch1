@@ -10,4 +10,5 @@ public interface Associateinterface {
     public Boolean update(Associate associate);
     public boolean delete(int id);
     public List<Associate> getall();
+
 }
