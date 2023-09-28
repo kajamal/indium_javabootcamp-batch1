@@ -11,7 +11,7 @@ public class Main {
 
         int choice;
         do {
-            System.out.println("Account Management Menu:");
+            System.out.println("Account Management 1Menu:");
             System.out.println("1. Create Account");
             System.out.println("2. View All Accounts");
             System.out.println("3. View Account by ID");

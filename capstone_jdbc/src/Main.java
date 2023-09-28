@@ -1,28 +1,29 @@
-import com.indium.capstone.Model.Associate;
-import com.indium.capstone.Model.Skill;
-import com.indium.capstone.Service.AssociateSkillTracker;
+import com.indium.capstone.model.Associate;
+import com.indium.capstone.model.Skill;
+import com.indium.capstone.service.SkillTrackerApp;
 
-
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        AssociateSkillTracker Tracker = new AssociateSkillTracker();
-
+        SkillTrackerApp app = new SkillTrackerApp();
         Scanner scanner = new Scanner(System.in);
         int skillId =1;
 
         while (true) {
             System.out.println("Skill Tracker App Menu:");
-            System.out.println("1. Add Associate");
+            System.out.println("1. Add New Associate");
             System.out.println("2. List Associates");
             System.out.println("3. Edit Associate");
             System.out.println("4. Delete Associate");
             System.out.println("5. Add Skill to Associate");
             System.out.println("6. Edit Skill");
             System.out.println("7. Delete Skill");
-            System.out.println("8. Search associates");
-            System.out.println("9.show key metrics");
+            System.out.println("8. View Associate Details");
+            System.out.println("9. Search associates");
+            System.out.println("10.show key metrics");
+            System.out.println("11. Import data");
+            System.out.println("12. Export data");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -30,8 +31,6 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the Associate ID");
-                    int id = scanner.nextInt();
                     System.out.print("Enter Associate Name: ");
                     String name = scanner.next();
                     System.out.print("Enter Associate Age: ");
@@ -42,14 +41,13 @@ public class Main {
                     String email = scanner.next();
                     System.out.print("Enter Location: ");
                     String location = scanner.next();
-                    Associate newAssociate = new Associate(id,name, age, businessUnit, email, location);
-                    Tracker.addAssociate(newAssociate);
-                    System.out.println("Associate added!");
-                    System.out.println("Created on: " + newAssociate.getCreateTime());
+                    Associate newAssociate = new Associate(name, age, businessUnit, email, location);
+                    app.addAssociate(newAssociate);
+                    System.out.println("Associate added successfully!");
                     break;
                 case 2:
                     System.out.println("List of Associates:");
-                    Tracker.listAssociates();
+                    app.listAssociates();
                     break;
                 case 3:
                     System.out.print("Enter Associate ID to Edit: ");
@@ -65,14 +63,13 @@ public class Main {
                     System.out.print("Enter Location: ");
                     location = scanner.next();
                     Associate updatedAssociate = new Associate(editAssociateId,name, age, businessUnit, email, location);
-                    Tracker.editAssociate(editAssociateId, updatedAssociate);
+                    app.editAssociate(updatedAssociate);
                     System.out.println("Associate edited successfully!");
-                    System.out.println("updated on:" + updatedAssociate.getUpdateTime());
                     break;
                 case 4:
                     System.out.print("Enter Associate ID to Delete: ");
                     int deleteAssociateId = scanner.nextInt();
-                    Tracker.deleteAssociate(deleteAssociateId);
+                    app.deleteAssociate(deleteAssociateId);
                     System.out.println("Associate deleted successfully!");
                     break;
                 case 5:
@@ -87,56 +84,71 @@ public class Main {
                     System.out.print("Enter Skill Experience (months): ");
                     int skillExperience = scanner.nextInt();
                     Skill newSkill = new Skill(addSkillAssociateId,skillName, skillDescription, skillCategory, skillExperience);
-                    Tracker.addSkillToAssociate(addSkillAssociateId, newSkill);
+                    app.addSkillToAssociate(addSkillAssociateId, newSkill);
                     System.out.println("Skill added to associate successfully!");
                     skillId++;
                     break;
                 case 6:
                     System.out.print("Enter Skill ID to Edit: ");
                     int editSkillId = scanner.nextInt();
+
                     System.out.print("Enter Skill Name: ");
                     skillName = scanner.next();
+
                     System.out.print("Enter Skill Description: ");
                     skillDescription = scanner.next();
-                    System.out.print("Enter Skill Category (Primary/Secondary): ");
+
+                    System.out.print("Enter Skill Category (Primary/Secondary):");
                     skillCategory = scanner.next();
+
                     System.out.print("Enter Skill Experience (months): ");
                     skillExperience = scanner.nextInt();
-                    Skill updatedSkill = new Skill(skillId,skillName, skillDescription, skillCategory, skillExperience);
-                    Tracker.editSkill(editSkillId, updatedSkill);
+
+                    Skill updatedSkill = new Skill(skillName, skillDescription, skillCategory, skillExperience,editSkillId,skillDescription);
+                    app.editSkill(editSkillId, updatedSkill);
                     skillId++;
                     System.out.println("Skill edited successfully!");
                     break;
                 case 7:
                     System.out.print("Enter Skill ID to Delete: ");
                     int deleteSkillId = scanner.nextInt();
-                    Tracker.deleteSkill(deleteSkillId);
+                    app.deleteSkill(deleteSkillId);
                     System.out.println("Skill deleted successfully!");
                     break;
-
-                case 8:{
+                case 8:
+                    System.out.print("Enter Associate ID to View Details: ");
+                    int viewAssociateId = scanner.nextInt();
+                    app.viewAssociate(viewAssociateId);
+                    break;
+                case 9:{
                     System.out.println("1.search associate by associate name");
-                    System.out.println("2.search associate by location");
-                    System.out.println("3.search associate by skills");
+                    System.out.println("2.search associate by associate id");
+                    System.out.println("3.search associate by location");
+                    System.out.println("4.search associate by skills");
                     int searchChoice = scanner.nextInt();
                     switch (searchChoice){
                         case 1 :{
                             System.out.println("enter associate name");
                             name = scanner.next();
-                            Tracker.searchAssociateByName(name);
+                            app.searchAssociateByName(name);
                             break;
                         }
-
-                        case 2 :{
+                        case 2:{
+                            System.out.println("enter associate id");
+                            viewAssociateId = scanner.nextInt();
+                            app.viewAssociate(viewAssociateId);
+                            break;
+                        }
+                        case 3 :{
                             System.out.println("enter location");
                             location = scanner.next();
-                            Tracker.searchAssociateByLocation(location);
+                            app.searchAssociateByLocation(location);
                             break;
                         }
-                        case 3:{
+                        case 4:{
                             System.out.println("enter skill name");
                             skillName = scanner.next();
-                            Tracker.searchAssociateBySkills(skillName);
+                            app.searchAssociateBySkills(skillName);
                             break;
                         }
                         default :
@@ -145,33 +157,33 @@ public class Main {
                     }
                     break;
                 }
-                case 9:{
-                    System.out.println("1.To find associates account");
+                case 10:{
+                    System.out.println("1.To find associates acount");
                     System.out.println("2.To find associates count with grater than n skills");
                     System.out.println("3.To find associate id's with grater than n skills");
                     System.out.println("4.To find associates with particular skill");
                     choice  = scanner.nextInt();
                     switch (choice){
                         case 1:{
-                            Tracker.getTotalAssociates();
+                            app.getTotalAssociates();
                             break;
                         }
                         case 2:{
                             System.out.println("enter count of n : ");
                             int count = scanner.nextInt();
-                            Tracker.getTotalAssociatesWithSkillsGreaterThan(count);
+                            app.getTotalAssociatesWithSkillsGreaterThan(count);
                             break;
                         }
                         case 3:{
                             System.out.println("enter count of n : ");
                             int count = scanner.nextInt();
-                            Tracker.getAssociateIdsWithSkillsGreaterThan(count);
+                            app.getAssociateIdsWithSkillsGreaterThan(count);
                             break;
                         }
                         case 4:{
                             System.out.println("enter the skill to search");
                             String skill = scanner.next();
-                            Tracker.getTotalAssociatesWithSkills(skill);
+                            app.getTotalAssociatesWithSkills(skill);
                             break;
                         }
                         default:{
@@ -182,7 +194,12 @@ public class Main {
                     break;
 
                 }
-
+                case 11:
+                    app.importData();
+                    break;
+                case 12:
+                    app.exportData();
+                    break;
                 case 0:
                     System.out.println("Exiting Skill Tracker App.");
                     System.exit(0);

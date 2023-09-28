@@ -1,13 +1,11 @@
-package com.indium.capstone.Service;
+package com.indium.capstone.service;
 
+import com.indium.capstone.model.Associate;
+import com.indium.capstone.model.Skill;
 
-import com.indium.capstone.Model.Associate;
-import com.indium.capstone.Model.Skill;
-
-
-public interface AssociateSkillsService {
+public interface SkillTracker {
     public void listAssociates();
-    public void editAssociate(int associateId, Associate updatedAssociate);
+    public void editAssociate(Associate updatedAssociate);
     public void deleteAssociate(int associateId);
     public void addSkillToAssociate(int associateId, Skill skill);
     public void editSkill(int skillId, Skill updatedSkill);

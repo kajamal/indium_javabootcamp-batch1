@@ -1,18 +1,42 @@
-package com.indium.capstone.Model;
-import java.util.*;
+package com.indium.capstone.model;
+
+import com.indium.capstone.Dao.AssociateDaoJdbcImpl;
+import com.indium.capstone.Dao.SkillDao;
+import com.indium.capstone.Dao.SkillDaoImpl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Associate {
+    private static int nextId = 1;
     private int id;
     private String name;
     private int age;
     private String businessUnit;
     private String email;
     private String location;
-    private List<Skill> skills = new ArrayList<>();
+    public List<Skill> skills = new ArrayList<>();
     private Date createTime;
     private Date updateTime;
+    SkillDao skillDao;
 
-    public Associate(int id ,String name, int age, String businessUnit, String email, String location) {
+    public Associate() {
+        skillDao = new SkillDaoImpl();
+    }
+
+    public Associate(String name, int age, String businessUnit, String email, String location) {
+        this.id = nextId++;
+        this.name = name;
+        this.age = age;
+        this.businessUnit = businessUnit;
+        this.email = email;
+        this.location = location;
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
+
+    public Associate(int id,String name, int age, String businessUnit, String email, String location) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -45,18 +69,47 @@ public class Associate {
         updateTime = new Date();
     }
 
-    public void viewDetails() {
+    public void viewDetails(List<Skill> allSkills) {
+//        List<Skill> allskills;
+//        allskills = skillDao.getall();
+//        System.out.println(skills);
         System.out.println("Associate ID: " + id);
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
         System.out.println("Business Unit: " + businessUnit);
         System.out.println("Email: " + email);
         System.out.println("Location: " + location);
-        System.out.println("Created on:" + getCreateTime());
+        System.out.println("Skills: ");
+        for (Skill skill : allSkills) {
+            if(skill.getUserId()==id){
+//                System.out.println(skill.getUserId());
+                System.out.println("  Skill ID: " + skill.getSkillId() + ", Name: " + skill.getName());
+            }
+        }
+    }
+
+    public void viewDetails() {
+//        skills = skillDao.getall();
+        System.out.println("Associate ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Business Unit: " + businessUnit);
+        System.out.println("Email: " + email);
+        System.out.println("Location: " + location);
         System.out.println("Skills: ");
         for (Skill skill : skills) {
-            System.out.println("  Skill ID: " + skill.getId() + ", Name: " + skill.getName());
+//            if(skill.getId()==id){
+                System.out.println("  Skill ID: " + skill.getId() + ", Name: " + skill.getName());
+//            }
         }
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        Associate.nextId = nextId;
     }
 
     public int getId() {
