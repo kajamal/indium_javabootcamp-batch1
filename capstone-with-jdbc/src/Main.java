@@ -1,25 +1,25 @@
 import com.indium.capstone.model.Associate;
 import com.indium.capstone.model.Skill;
-import com.indium.capstone.service.SkillTrackerApp;
+import com.indium.capstone.service.Trackingappimpl;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        SkillTrackerApp app = new SkillTrackerApp();
+        Trackingappimpl app = new Trackingappimpl();
         Scanner scanner = new Scanner(System.in);
         int skillId =1;
 
         while (true) {
             System.out.println("Skill Tracker App Menu:");
-            System.out.println("1. Add New Associate");
-            System.out.println("2. List Associates");
-            System.out.println("3. Edit Associate");
-            System.out.println("4. Delete Associate");
+            System.out.println("1. Add the New Associate");
+            System.out.println("2. List all Associates");
+            System.out.println("3. Edit the Associate");
+            System.out.println("4. Delete the Associate");
             System.out.println("5. Add Skill to Associate");
             System.out.println("6. Edit Skill");
             System.out.println("7. Delete Skill");
-            System.out.println("8. View Associate Details");
+            System.out.println("8. View Associate Details by id");
             System.out.println("9. Search associates");
             System.out.println("10.show key metrics");
             System.out.println("11. Import data");
@@ -159,8 +159,8 @@ public class Main {
                 }
                 case 10:{
                     System.out.println("1.To find associates acount");
-                    System.out.println("2.To find associates count with grater than n skills");
-                    System.out.println("3.To find associate id's with grater than n skills");
+                    System.out.println("2.To find associates count with greater than n skills");
+                    System.out.println("3.To find associate id's with greater than n skills");
                     System.out.println("4.To find associates with particular skill");
                     choice  = scanner.nextInt();
                     switch (choice){

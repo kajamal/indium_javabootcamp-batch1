@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class AccountServiceHashMapImplement implements AccountService {
     private HashMap<Integer, Account> accountMap = new HashMap<>();
     static Scanner getData = new Scanner(System.in);
-    AccountDao accountDao;
+     ountDao;
     private int accountIdCounter = 1;
 
     public AccountServiceHashMapImplement(){

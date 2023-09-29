@@ -11,7 +11,6 @@ public class Skill {
     private int skillId;
 
     public Skill( String name, String description, String category, int experience) {
-//        this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
