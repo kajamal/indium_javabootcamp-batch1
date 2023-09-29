@@ -3,7 +3,7 @@ package com.indium.capstone.service;
 import com.indium.capstone.model.Associate;
 import com.indium.capstone.model.Skill;
 
-public interface SkillTracker {
+public interface Trackerservice {
     public void listAssociates();
     public void editAssociate(Associate updatedAssociate);
     public void deleteAssociate(int associateId);

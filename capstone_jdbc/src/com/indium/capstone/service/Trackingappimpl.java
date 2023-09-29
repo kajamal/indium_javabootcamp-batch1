@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SkillTrackerApp implements SkillTracker{
+public class Trackingappimpl implements Trackerservice {
     AssociateDao associateDao;
     SkillDao skillDao;
     private List<Associate> associates = new ArrayList<>();
     private List<Skill> skills = new ArrayList<>();
 
-    public SkillTrackerApp() {
+    public Trackingappimpl() {
 
         associateDao = new AssociateDaoJdbcImpl();
         skillDao = new SkillDaoImpl();
@@ -63,10 +63,18 @@ public class SkillTrackerApp implements SkillTracker{
         boolean deleteSkillStatus = skillDao.delete(skillId);
     }
 
-    public void viewAssociate(int associateId){
-        Associate associate = associateDao.get(associateId);
-        associate.viewDetails();
+
+public void viewAssociate(int associateId){
+    Associate associate = associateDao.get(associateId);
+    List<Skill> skills = skillDao.getall();
+    for(Skill skill : skills){
+        if(associate.getId()==skill.getUserId()){
+            associate.addSkill(skill);
+        }
     }
+    associate.viewDetails();
+}
+
 
     public void searchAssociateByName(String name){
         associates = associateDao.getall();
@@ -116,7 +124,7 @@ public class SkillTrackerApp implements SkillTracker{
         int count = (int) associates.stream()
                 .filter(associate -> associate.getSkills().size() > n)
                 .count();
-        System.out.println("total associates with grater than "+n+" skills are : "+count);
+        System.out.println("total associates with greater than "+n+" skills are : "+count);
     }
 
     public void getAssociateIdsWithSkillsGreaterThan(int n) {
